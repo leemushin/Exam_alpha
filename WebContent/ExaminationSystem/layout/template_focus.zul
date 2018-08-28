@@ -1,0 +1,12 @@
+<zk>
+	<borderlayout>
+		<west size="5%" style="background-image: url(../../img/thenorth.jpg);">
+		</west>
+		<center style="background-color:#97C8E2;" id="mainContent"
+			autoscroll="true" border="none" self="@insert(content)">
+			<!-- the main content will be insert to here -->
+		</center>
+		<east size="5%" style="background-image: url(../../img/thenorth.jpg);">
+		</east>
+	</borderlayout>
+</zk>

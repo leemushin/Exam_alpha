@@ -1,0 +1,70 @@
+<?page title="成績紀錄頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<!--<?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?> -->
+<zk>
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;
+					//回到主頁面
+			        void backmain() {
+			            Executions.sendRedirect("exam_main.zul");
+			    	}  	    	        	    	   
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px">
+		<div>
+			<div align="right">
+				<button label="回選單" onClick="backmain()" />
+			</div>
+			<div apply="org.zkoss.bind.BindComposer"
+				viewModel="@id('vm') @init('next.services.queryscores.ScoredataViewModel')"> <!-- 資料跟此ViewModel要 -->
+				<grid model="@load(vm.pointModel)">
+					<columns>
+						<column hflex="1" label="姓名"/>
+						<column hflex="1" label="本月積分"/>
+						<column hflex="1" label="學期積分"/>
+					</columns>
+					<template name="model">
+						<row>
+							<label value="@load(each.SB_ACCOUNT)" />
+							<label value="@load(each.point_month)" />
+							<label value="@load(each.point_semester)" />
+						</row>
+					</template>
+				</grid>
+				<grid model="@load(vm.scoredataModel)" mold="paging" pageSize="10"
+					emptyMessage="尚未有考試記錄">
+					<columns>
+						<column hflex="2" label="試卷名稱" />
+						<column hflex="min" label="總題數" align="center" />
+						<column hflex="min" label="正確題數" align="center" />
+						<column hflex="2" label="進入時間" />
+						<column hflex="2" label="離開時間" />
+						<column hflex="min" label="作答時間" />
+						<column hflex="min" label="符合給分時間" align="center" />
+						<column hflex="min" label="分數" align="center" />
+						<column hflex="min" label="看解答時間" />
+						<column hflex="min" label="獎勵分數" />
+						<column hflex="min" label="" align="center" />
+					</columns>
+					<template name="model">
+						<row>
+							<label value="@load(each.SB_QUIZNAME)" />
+							<label value="@load(each.SB_QUIZTOTAL)" />
+							<label value="@load(each.SB_QUIZCORRECT)" />
+							<label value="@load(each.SB_QUIZIN)" />
+							<label value="@load(each.SB_QUIZOUT)" />
+							<label value="@load(each.SB_ANSWERTIME)" />
+							<label value="@load(each.REMARK)" />
+							<label value="@load(each.SB_POINT)" />
+							<label value="@load(each.SB_QUIZEXPLAIN)" />
+							<label value="@load(each.SB_BONUS)" />
+							<button id="@load(each.SB_ID)" label="試題回顧"
+								onClick="@command('get_record', paramx=self.id)" />
+						</row>
+					</template>
+				</grid>
+			</div>
+		</div>
+	</hbox>
+</zk>

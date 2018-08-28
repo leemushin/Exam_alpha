@@ -1,0 +1,54 @@
+<?page title="出題方式選擇" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;  	   
+					
+	                  void get_optional() {	
+	                	  Executions.sendRedirect("manage_setexam.zul");//跳轉到自選
+	              	}
+	                  void get_random(){
+	                	  Executions.sendRedirect("setexam_random.zul");//跳轉到隨機出題
+	                  }  
+				      void backmain() {
+				          Executions.sendRedirect("/ManagementSystem/manage_main.zul");
+				    }
+				      void get_edit() {
+				          Executions.sendRedirect("setexam_edit.zul");//跳到試卷編輯
+				    }
+	]]></zscript>
+	<style>
+		.grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		}
+		.grid > div {
+		border: 2px solid #7EC6FE;
+		border-radius: 5px;
+		padding: 1em;
+		color: #149CFA;
+		background: #E8F5FF;
+		}
+	</style>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div>
+			<div align="right">
+				<button label="回教師管理選單" onClick="backmain()" />
+			</div>
+			<window sizable="true" border="normal" title="請選擇功能"
+				style="text-align:center;background-color: #51A8DD" width="800px">
+				<div sclass="grid" height="100%" align="center">
+					<button label="隨機出題" onClick="get_random()" width="150px"
+						height="150px" />
+					<button label="自選出題" onClick="get_optional()" width="150px"
+						height="150px" />
+					<button label="試卷編輯" onClick="get_edit()" width="150px"
+						height="150px" />
+				</div>
+			</window>
+		</div>
+	</hbox>
+</zk>

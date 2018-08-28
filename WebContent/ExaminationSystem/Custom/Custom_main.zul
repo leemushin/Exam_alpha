@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<zscript><![CDATA[
+	        	      void backmain() {
+	        	          Executions.sendRedirect("../exam_main.zul");
+	        	    }
+    ]]></zscript>
+	<div align="right">
+		<button label="回選單" onClick="backmain()" />
+	</div>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.customexam.CustomexamViewModel')">
+		<div>
+			<label value="請輸入試卷名稱" />
+			<textbox value="@bind(vm.exam_keyin)" />
+			<button label="進行考試" onClick="@command('search_Customexam')" />
+		</div>
+	</div>
+</zk>

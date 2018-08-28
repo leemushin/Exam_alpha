@@ -1,0 +1,61 @@
+<?page title="研究統計系統頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[
+			void backmain() {
+			Executions.sendRedirect("../manage_main.zul");
+			}
+]]></zscript>
+	<script src="/ManagementSystem/statistics/dateboxYM.js"></script>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('next.services.statistics.StatisticsViewModel')">
+			<div align="right">
+				<button label="回教師管理選單" onClick="backmain()" />
+			</div>
+			<window border="normal" title="請選擇年級與月份"
+				style="text-align:left;background-color: #51A8DD">
+				<div>
+					<label value="欲查詢年級" style="color:red;font-size:16pt" />
+				</div>
+				<listbox mold="select"
+					onSelect="@command('get_selectgrade', paramx=self.selectedItem.value)">
+					<listitem label="七年級" value="7"></listitem>
+					<listitem label="八年級" value="8"></listitem>
+					<listitem label="九年級" value="9"></listitem>
+					<listitem label="全年級" value="all" selected="true"></listitem>
+				</listbox>
+				<h:br />
+				<h:br />
+				<div>
+					<label value="欲查詢月份" style="color:red;font-size:16pt" />
+				</div>
+				<radiogroup id="selectdate"
+					onCheck="@command('get_selectdate', paramx=self.selectedItem.label)">
+					<radio label="1" checked="true" />
+					<label value=".單一月份" />
+					<h:br />
+					<datebox id="single_m" format="yyyy/MM" sclass="datebox-month-only"
+						value="@bind(vm.single_m)" />
+					<h:br />
+					<radio label="2" />
+					<label value=".期間" />
+					<h:br />
+					<label value="從" />
+					<datebox id="start_m" value="@bind(vm.start_m)" format="yyyy/MM"
+						sclass="datebox-month-only" />
+					<label value="到" />
+					<datebox id="end_m" value="@bind(vm.end_m)" format="yyyy/MM"
+						sclass="datebox-month-only" />
+					<h:br />
+					<h:br />
+					<div align="right">
+						<button id="btn_confirm" label="確認" onClick="@command('btn_confirm')" />
+					</div>
+				</radiogroup>
+			</window>
+		</div>
+	</hbox>
+</zk>

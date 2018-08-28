@@ -1,0 +1,20 @@
+<zk>
+	<zscript><![CDATA[
+		                  void backlogin(){
+		                	  Executions.sendRedirect("/LoginSystem/login.zul");
+		                  }
+	]]></zscript>
+	<hbox vflex="1" hflex="1" align="center" pack="center" spacing="20px">
+		<timer delay="5000" onTimer="backlogin()" />
+		<window width="80%" title="Session Timeout" border="normal">
+			<vbox>
+				<label
+					value="The page or component you request is no longer available.
+				This is normally caused by timeout, opening too many Web pages, or rebooting
+				the server.無法取得該頁內容,原因通常是閒置太久、開啟太多網頁或伺服器重啟所造成。" />
+				<label value="五秒後將導回登入頁面,若無回應請點選按鈕。" />
+			</vbox>
+			<button label="回登入頁面" onClick="backlogin()" />
+		</window>
+	</hbox>
+</zk>

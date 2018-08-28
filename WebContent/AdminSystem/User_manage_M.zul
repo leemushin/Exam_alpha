@@ -1,0 +1,60 @@
+<?page title="大量建置帳號" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					        void backmain() {
+					            Executions.sendRedirect("admin_main.zul");
+					    	}	
+	]]></zscript>
+	<div self="@define(content)">
+		<div align="right"><button label="回系統管理選單" onClick="backmain()" /></div>
+		<div apply="next.services.insertuser.Insertuser">
+			<hbox height="50px" width="100%" align="center">
+				<hbox hflex="true">使用者姓名:
+					<textbox id="SYS_USERNAME_M" width="350px" height="250px"  rows="10" tabindex="1"/>
+				</hbox>
+				<hbox hflex="true">使用者帳號:
+					<textbox id="SYS_ACCOUNT_M"  width="350px" height="250px"  rows="10" constraint="no empty" tabindex="2"/>
+				</hbox>
+				<hbox hflex="true">使用者密碼:
+					<textbox id="PASSWORD_M"  width="350px" height="250px"  rows="10" constraint="no empty" tabindex="3"/>
+				</hbox>
+			</hbox>
+			<div><label value="使用「,」分隔每筆資料,例如 姓名:『張三,李四,王五』帳號:『chang,lee,wang』密碼:『111,222,333』" style="color:red"/></div>
+			<hbox height="50px" width="100%" align="center">
+				<hbox hflex="true">所屬年級:
+					<textbox id="UR_STUDENT" maxlength="2" width="50px" tabindex="5"/>
+				</hbox>
+				<hbox hflex="true">所屬學校:
+					<textbox id="UR_SCHOOL" width="150px" tabindex="6" />
+				</hbox>
+				<hbox hflex="true">註冊日期:
+					<datebox id="REGISTERED" tabindex="7" />
+				</hbox>
+				<hbox hflex="true">到期日期:
+					<datebox id="EXPIRYDATE" tabindex="8" />
+				</hbox>
+			</hbox>
+			<hbox height="50px" width="100%" align="center">
+				<hbox>老師註記:
+					<textbox id="UR_TEACHER" value="0" maxlength="1" width="30px" tabindex="9"/>
+				</hbox>
+				<hbox>校長註記:
+					<textbox id="UR_PRINCIPAL" value="0" maxlength="1" width="30px" tabindex="10"/>
+				</hbox>
+				<hbox>
+					<label value="管理者註記:" style="color:red" />
+					<textbox id="UR_ADMIN" value="0" maxlength="1" width="30px" tabindex="11" disabled="true" />
+				</hbox>
+				<hbox>
+					<label value="備註:" />
+					<textbox id="remark" tabindex="12" width="350px"/>
+				</hbox>								
+			</hbox>
+			<div align="right">
+				<button id="btn_insertm" label="大量新增使用者" onClick="" style="background-color:#867835" />
+			</div>
+		</div>
+	</div>
+</zk>

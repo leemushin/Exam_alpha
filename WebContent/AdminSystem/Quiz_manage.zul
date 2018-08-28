@@ -1,0 +1,122 @@
+<?page title="題目管理系統" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					        void backmain() {
+					            Executions.sendRedirect("admin_main.zul");
+					    	}
+							void changeMold(String mold){
+								grid.pagingChild.mold = mold;
+							}
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center" pack="center" spacing="20px" style="background-color: #006284">	
+	<div>
+		<div align="right"><button label="回系統管理選單" onClick="backmain()" /></div>
+		<tabbox id="tb" >
+			<tabs id="tabs">
+				<tab id="insert" label="新增題目" />
+				<tab id="update" label="查詢/修改"/>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('next.services.insertquiz.Insertquiz')">
+					<hbox height="50px" width="100%" align="center">
+						<hbox hflex="true">題目代碼: <textbox id="QB_CODE" value="@bind(vm.QB_CODE) @save(vm.QB_CODE, before='Insert_quiz')" width="150px" disabled="true" tabindex="1"/></hbox>
+						<hbox hflex="true">題目版本: <textbox id="QB_VERSION" value="@bind(vm.QB_VERSION)" width="50px" tabindex="2"/></hbox>
+         				<hbox hflex="true">題目冊別: <textbox id="QB_BOOK" value="@bind(vm.QB_BOOK)" width="150px" tabindex="3"/></hbox>
+         				<hbox hflex="true">題目章別: <textbox id="QB_CHAPTER" value="@bind(vm.QB_CHAPTER)" width="50px" maxlength="1" tabindex="4"/></hbox>
+         				<hbox hflex="true">題目節別: <textbox id="QB_SECTION" value="@bind(vm.QB_SECTION)" width="50px" maxlength="1" tabindex="5"/></hbox>
+         			</hbox>	
+         			<hbox height="50px" width="100%" align="center">	
+         				<hbox hflex="true">題目難度: <textbox id="QB_LEVEL" value="@bind(vm.QB_LEVEL)" width="50px" tabindex="6"/></hbox>
+         				<hbox hflex="true">題目編號: <textbox id="QB_NO" value="@bind(vm.QB_NO)" width="150px" tabindex="7"/></hbox>
+         				<hbox hflex="true">題目答案: <textbox id="QB_ANSWER" value="@bind(vm.QB_ANSWER)" width="150px" tabindex="8"/></hbox>
+         				<radiogroup onCheck="@command('set_type', paramx=self.selectedItem.value)">
+         					<vlayout >
+         						<radio label="選擇題" value="0" selected="true"/>
+         						<radio label="填充題" value="1"/>
+         					</vlayout>
+         				</radiogroup>
+         				<hbox hflex="true"></hbox>
+         			</hbox>
+         			<hbox height="50px" width="100%" align="center">
+         				<hbox hflex="true">題目圖片位置: <textbox id="QB_PIC" value="@bind(vm.QB_PIC)" width="350px" tabindex="9"/></hbox>
+         				<hbox hflex="true">題目詳解位置: <textbox id="QB_EXPLAIN" value="@bind(vm.QB_EXPLAIN)" width="350px" tabindex="10"/></hbox>
+        			</hbox>
+        			<div align="right"><button id="btn_quizinsert" label="新增題目" onClick="@command('Insert_quiz')" style="background-color:#867835"/></div>
+        			</div>
+       				<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('next.services.bindquiz.BindquizViewModel')" >
+      					<grid id="grid" model="@bind(vm.lastquizModel)" mold="paging" pageSize="3" >
+      						<columns>
+      							<column hflex="1" label="題目代碼" align="center" />
+      							<column hflex="1" label="題目詳解位置" align="center" />
+      						</columns>
+      						<template name="model">
+      							<row>
+      							<label value="@bind(each.QB_CODE)"></label>
+      							<label value="@bind(each.QB_EXPLAIN)"></label>
+      							</row>
+      						</template>
+      					</grid>
+      					<radiogroup onCreate="changeMold(self.selectedItem.label)" visible="false" >
+      						<radio label="os"  checked="true"/>
+      					</radiogroup>
+      				</div>        			
+				</tabpanel>
+				<tabpanel>
+					<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('next.services.bindquiz.BindquizViewModel')">
+						<hbox align="center">
+							<label value="請輸入試題名稱:"/><textbox value="@bind(vm.quiz_keyin)" />
+							<button label="搜尋" image="../img/search.png" onClick="@command('search_quiz')" />
+							<checkbox label='查詢模式' checked='@bind(vm.readonly)'/>
+							<button label="刪除題目"  onClick="@command('do_delete')" style="background-color:#FF8888" disabled='@bind(vm.readonly)'/>
+						</hbox>
+						<hbox height="50px" width="100%" align="center" children="@bind(vm.quizModel) @template('temp1')">
+							<template name="temp1">
+						<hbox hflex="true">題目代碼: 
+						<textbox id="upd_CODE" value="@bind(each.QB_CODE) @save(vm.upd_CODE, before='go_update')" width="150px" disabled="true" tabindex="11" /></hbox>
+						<hbox hflex="true">題目版本: 
+						<textbox id="upd_VERSION" value="@bind(each.QB_VERSION) @save(vm.upd_VERSION, before='go_update')" width="50px" tabindex="12" disabled='@bind(vm.readonly)'/></hbox>
+         				<hbox hflex="true">題目冊別: 
+         				<textbox id="upd_BOOK" value="@bind(each.QB_BOOK) @save(vm.upd_BOOK, before='go_update')" width="150px" tabindex="13" disabled='@bind(vm.readonly)'/></hbox>
+         				<hbox hflex="true">題目章別: 
+         				<textbox id="upd_CHAPTER" value="@bind(each.QB_CHAPTER) @save(vm.upd_CHAPTER, before='go_update')" width="50px" maxlength="1" tabindex="14" disabled='@bind(vm.readonly)'/></hbox>
+         				<hbox hflex="true">題目節別: 
+         				<textbox id="upd_SECTION" value="@bind(each.QB_SECTION) @save(vm.upd_SECTION, before='go_update')" width="50px" maxlength="1" tabindex="15" disabled='@bind(vm.readonly)'/></hbox>
+							</template>
+						</hbox>
+         				<hbox height="50px" width="100%" align="center" children="@bind(vm.quizModel) @template('temp2')">
+         					<template name="temp2">
+         						<hbox hflex="true">題目難度:
+         						<textbox id="upd_LEVEL" value="@bind(each.QB_LEVEL) @save(vm.upd_LEVEL, before='go_update')" width="50px" tabindex="16" disabled='@bind(vm.readonly)'/></hbox>
+         						<hbox hflex="true">題目編號: 
+         						<textbox id="upd_NO" value="@bind(each.QB_NO) @save(vm.upd_NO, before='go_update')" width="150px" tabindex="17" disabled='@bind(vm.readonly)'/></hbox>
+         						<hbox hflex="true">題目答案: 
+         						<textbox id="upd_ANSWER" value="@bind(each.QB_ANSWER) @save(vm.upd_ANSWER, before='go_update')" width="150px" tabindex="18" disabled='@bind(vm.readonly)'/></hbox>
+         						<hbox hflex="true"></hbox>
+         						<hbox hflex="true"></hbox>
+         					</template>	
+         				</hbox>
+         				<hbox height="50px" width="100%" align="center" children="@bind(vm.quizModel) @template('temp3')">
+         					<template name="temp3">
+         					    <hbox hflex="true">題目圖片位置: 
+         						<textbox id="upd_PIC" value="@bind(each.QB_PIC) @save(vm.upd_PIC, before='go_update')" width="350px" tabindex="19" disabled='@bind(vm.readonly)'/></hbox>
+         						<hbox hflex="true">題目詳解位置:
+         						<textbox id="upd_EXPLAIN" value="@bind(each.QB_EXPLAIN) @save(vm.upd_EXPLAIN, before='go_update')" width="350px" tabindex="20" disabled='@bind(vm.readonly)'/></hbox>			
+         						<button label="確認修改"  onClick="@command('go_update')" style="background-color:#867835" disabled='@bind(vm.readonly)'/>
+         					</template>
+        				</hbox>
+         				<hbox width="100%" align="center" children="@bind(vm.quizModel) @template('temp4')">
+         					<template name="temp4">
+         						<label value="題目預覽" />
+         					    <div height="150px" width="100px"><image src="@init(each.QB_PIC)"/></div>
+         					</template>
+        				</hbox>        				
+        			</div>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</div>
+	</hbox>
+</zk>

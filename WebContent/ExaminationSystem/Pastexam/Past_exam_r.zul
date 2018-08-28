@@ -1,0 +1,77 @@
+<?page title="歷屆試題" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[		
+	    //將換頁轉換成OS模式
+		void changeMold(String mold){
+			grid.pagingChild.mold = mold;
+		}
+	
+	]]></zscript>
+	<div>
+		<include src="../Timer/clocktest.zul" />
+	</div>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.customexam.CustomexamViewModel')"> <!-- 資料跟此ViewModel要 -->
+		<div>
+			<div align="right">
+				<label value="" onCreate="@command('lenth')" visible="false" />
+				<button label="評分" onClick="@command('submit_quiz')" />
+				<timer delay="3600000" onTimer="@command('timeover')" />
+			</div>
+		</div>
+		<grid id="grid" model="@load(vm.pastexam_RModel)" mold="paging"
+			pageSize="1" onPaging="@command('set_Actpage', paramx=self.getActivePage())">
+			<columns>
+				<column hflex="1" label="題目" align="left" />
+				<column hflex="1" label="選項" align="left" />
+			</columns>
+			<template name="model">
+				<row>
+					<iframe width="620px" height="550px" src="@bind(each.QB_PIC)" />
+					<div>
+						<radiogroup
+							onCheck="@command('set_choiceans', paramx=self.selectedItem.label)"
+							visible="@bind(each.is_pick)">
+							<vlayout>
+								<radio label="A" />
+								<h:br />
+								<radio label="B" />
+								<h:br />
+								<radio label="C" />
+								<h:br />
+								<radio label="D" />
+							</vlayout>
+						</radiogroup>
+						<textbox onChanging="@command('set_choiceans', paramx=event.value)"
+							visible="@bind(each.is_fill)" />
+						<h:br />
+						<label value="大小寫有區分!" visible="@bind(each.is_fill)" />
+						<h:br />
+						<label value="多格填充以「,」分隔答案,如" visible="@bind(each.is_fill)" />
+						<h:br />
+						<textbox value="①,②,③" disabled="true" visible="@bind(each.is_fill)" />
+						<label value="@bind(each.QB_EXPLAIN)"
+							onCreate="@command('set_explain', paramx=self.getValue())"
+							visible="false" />
+						<h:br /><!-- 取得詳解位置 -->
+						<label value="@bind(each.QB_ANSWER)"
+							onCreate="@command('set_rightans', paramx=self.getValue())" />
+						<h:br /> 	<!-- 取得正確答案 -->
+						<label value="@bind(each.QB_CODE)"
+							onCreate="@command('set_quizcode', paramx=self.getValue())"
+							visible="false" />
+						<h:br />
+					</div>
+				</row>
+			</template>
+		</grid>
+	</div>
+	<vlayout>
+		<radiogroup onCreate="changeMold(self.selectedItem.label)"
+			visible="false"><!-- 此radiogroup是用來轉換換頁樣式的 -->
+			<vbox>
+				<radio label="os" checked="true" />
+			</vbox>
+		</radiogroup>
+	</vlayout>
+</zk>

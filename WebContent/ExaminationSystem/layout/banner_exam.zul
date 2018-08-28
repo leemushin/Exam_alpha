@@ -1,0 +1,12 @@
+<div hflex="1" vflex="1" sclass="banner">
+	<hbox hflex="1" vflex="1" align="center">
+		<image src="/img/Logo.png" width="220px" />
+		<div width="400px">
+			<label value="開發版" sclass="banner-head" />
+		</div>
+		<hbox apply="login.services.LogoutService" hflex="1" vflex="1"
+			pack="end" align="end">
+			<button id="cancel" label="離開" onClick="" />
+		</hbox>
+	</hbox>
+</div>

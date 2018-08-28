@@ -1,0 +1,44 @@
+<?page title="登入頁面" contentType="text/html;charset=UTF-8"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[		
+		                  Session s = Sessions.getCurrent(); 
+		                  //判斷是否有登入過(使用者session不等於null)
+		                  void checkiflogin(){
+		                	  if(s.getAttribute("userCredential") != null){
+		                		  Executions.sendRedirect("../Main/mainpage.zul");
+		                	  }
+		                  }
+	]]></zscript>
+	<label value="" onCreate="checkiflogin()" visible="false" />
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px">
+		<vlayout>
+			<window id="loginWin" apply="login.services.LoginViewmodel"
+				title="使用者登入" border="normal" hflex="min" style="background-color: #51A8DD">
+				<vbox hflex="min" align="center">
+					<grid hflex="min">
+						<columns>
+							<column hflex="min" align="right" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								帳號 :
+								<textbox id="account" width="200px" />
+							</row>
+							<row>
+								密碼 :
+								<textbox id="password" type="password" width="200px" />
+							</row>
+						</rows>
+					</grid>
+					<label id="message" sclass="warn" value="" />
+					<button id="login" label="登入" />
+				</vbox>
+			</window>
+		</vlayout>
+	</hbox>
+</zk>

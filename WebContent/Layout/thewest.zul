@@ -1,0 +1,30 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<zscript><![CDATA[	        
+	                  void getJunior() {	
+	                	  Executions.sendRedirect("/ExaminationSystem/exam_main.zul");
+	              	}
+	                  void getaccount(){
+	                	  Executions.sendRedirect("/AdminSystem/admin_main.zul");
+	                  }  
+	                  void get_teachermanage(){
+	                	  Executions.sendRedirect("/ManagementSystem/manage_main.zul");
+	                  }
+	]]></zscript>
+	<div height="100%" style="background-color:#006284"
+		viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+		<vlayout spacing="25%">
+			<div align="center" style="background-color: #51A8DD">
+				<label value="請選擇功能" />
+			</div>
+			<button label="系統管理功能" width="100%" onClick="getaccount()"
+				iconSclass="z-icon-cogs" visible='@bind(vm.admin_visible)' />
+			<button label="國小數學系統" width="100%" onClick="" iconSclass="z-icon-cogs" />
+			<button label="銜接數學系統" width="100%" onClick="" iconSclass="z-icon-cogs" />
+			<button label="國中數學系統" width="100%" onClick="getJunior()"
+				iconSclass="z-icon-cogs" />
+			<button label="教師管理系統" width="100%" onClick="get_teachermanage()"
+				iconSclass="z-icon-cogs" visible='@bind(vm.teacher_visible)' />
+		</vlayout>
+	</div>
+</zk>

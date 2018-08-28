@@ -1,0 +1,17 @@
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<zk>
+	<borderlayout hflex="1" vflex="1">
+		<north size="10%" border="none" style="background-color:#102d35">
+			<include src="/Layout/banner.zul" />
+		</north>
+		<west size="20%" border="none" style="background-color:#102d35">
+			<include src="/Layout/thewest.zul" />
+		</west>
+		<center id="mainContent" autoscroll="true" border="none"
+			self="@insert(content)">
+		</center>
+		<south size="8%" border="none" style="background-color:#102d35">
+			<include src="/Layout/footer.zul" />
+		</south>
+	</borderlayout>
+</zk>

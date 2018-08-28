@@ -1,0 +1,88 @@
+<?page title="考試頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/ExaminationSystem/layout/template_exam.zul"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[		
+	    //將換頁轉換成OS模式
+		void changeMold(String mold){
+			grid.pagingChild.mold = mold;
+		}
+	
+	      void cancelexam() {
+	  		Messagebox.show("即將離開考試,是否確認?(不予計分)", "警告", Messagebox.OK | Messagebox.CANCEL, Messagebox.EXCLAMATION
+					, new org.zkoss.zk.ui.event.EventListener() {
+			    public void onEvent(Event evt) throws InterruptedException {
+			        if (evt.getName().equals("onOK")) {
+				          Executions.sendRedirect("../exam_main.zul");}//按下OK後執行離開
+			    }
+			});
+	    } 
+	      
+	]]></zscript>
+
+	<div self="@define(content)" viewModel="@id('vm') @init('exam.service.ExamViewModel')"> <!-- 資料跟此ViewModel要 -->
+		<div style="background-color:#97C8E2;">
+			<div align="right">
+				<label value="" onCreate="@command('lenth')" visible="false" />
+				<button label="評分" onClick="@command('timeover')" />
+				<button label="離開" onClick="cancelexam()" />
+				<timer delay="3600000" onTimer="@command('timeover')" />
+			</div>
+		</div>
+		<div>
+			<include src="/ExaminationSystem/Timer/clocktest.zul" />
+		</div>
+		<grid id="grid" model="@load(vm.examModel_N)" mold="paging"
+			pageSize="1" onPaging="@command('set_Actpage', paramx=self.getActivePage())">
+			<columns>
+				<column hflex="1" label="選項" align="center" />
+				<column hflex="4" label="題目內容" align="center" />
+				<column hflex="1" label="題目代號" align="center" />
+			</columns>
+			<template name="model">
+				<row>
+					<cell style="background-color:#97C8E2;vertical-align:top;">
+						<div>
+							<radiogroup
+								onCheck="@command('set_choiceans', paramx=self.selectedItem.label)"
+								visible="@bind(each.is_pick)">
+								<vlayout>
+									<radio label="A" />
+									<h:br />
+									<radio label="B" />
+									<h:br />
+									<radio label="C" />
+									<h:br />
+									<radio label="D" />
+								</vlayout>
+							</radiogroup>
+							<textbox onChanging="@command('set_choiceans', paramx=event.value)"
+								visible="@bind(each.is_fill)" />
+							<h:br />
+							<label value="大小寫有區分!" visible="@bind(each.is_fill)" />
+							<h:br />
+							<label value="多格填充以「,」分隔答案,如" visible="@bind(each.is_fill)" />
+							<h:br />
+							<textbox value="①,②,③" disabled="true" visible="@bind(each.is_fill)" />
+							<label value="@bind(each.QB_ANSWER)" />
+						</div>
+					</cell>
+					<cell style="background-color:#97C8E2;">
+						<iframe width="620px" height="550px" src="@bind(each.QB_PIC)" />
+					</cell>
+					<cell style="background-color:#97C8E2;vertical-align:top;">
+						<label value="@bind(each.QB_NO)" />
+					</cell>
+				</row>
+			</template>
+		</grid>
+	</div>
+	<vlayout>
+		<radiogroup onCreate="changeMold(self.selectedItem.label)"
+			visible="false"><!-- 此radiogroup是用來轉換換頁樣式的 -->
+			<vbox>
+				<radio label="os" checked="true" />
+			</vbox>
+		</radiogroup>
+	</vlayout>
+</zk>

@@ -1,0 +1,99 @@
+<?page title="評分頁面" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;
+					String point;	//分數
+					int right;		//答對幾題
+					int total;		//全部幾題
+					
+					Session s = Sessions.getCurrent(); 
+					//將換頁轉換成OS模式
+					void changeMold(String mold){
+						grid.pagingChild.mold = mold;
+					}
+					//回到主頁面
+			        void backmain() {
+			        	//s.invalidate();//登出時將session無效
+			            Executions.sendRedirect("../exam_main.zul");
+			    	}
+					//如果session有值就塞進去
+					if(s.getAttribute("point") != null){
+						point = s.getAttribute("point");
+						right = s.getAttribute("right");
+						total = s.getAttribute("total");
+			            }    	        	    	        	    	   
+	]]></zscript>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.customexam.CustomexamViewModel')"> <!-- 資料跟此ViewModel要 -->
+		<label value="" onCreate="@command('getUid')" visible="false" />
+		<div align="right">
+			<button label="回選單" onClick="@command('get_exittime_exp')" />
+		</div>
+		<tabbox width="100%" mold="accordion">
+			<tabs>
+				<tab label="分數相關" />
+				<tab label="考卷評分" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<grid>
+						<columns>
+							<column label="題目總數" />
+							<column label="答對題數" />
+							<column label="得分" />
+						</columns>
+						<rows>
+							<row>
+								<div>
+									<label value="${total}" />
+									<h:br />
+								</div>
+								<div>
+									<label value="${right}" />
+									<h:br />
+								</div>
+								<div>
+									<label value="${point}" />
+									<h:br />
+								</div>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<grid id="grid" model="@load(vm.ary_toexp)" mold="paging"
+						pageSize="1">
+						<columns>
+							<column hflex="3" label="題目" align="left" />
+							<!-- <column hflex="1" label="正確解答" align="left" /> -->
+							<column hflex="1" label="選答" align="left" />
+							<column hflex="1" label="" align="left" />
+						</columns>
+						<template name="model">
+							<row>
+								<iframe width="620px" height="550px" src="@bind(each.QB_PIC)" />
+								<!-- <div><label value="@bind(each.QB_ANSWER)" /><h:br/></div> -->
+								<div>
+									<label value="@bind(each.usr_choice)" />
+									<h:br />
+								</div>
+								<div>
+									<label value="@bind(each.is_right)" />
+									<h:br />
+								</div>
+							</row>
+						</template>
+					</grid>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</div>
+	<vlayout>
+		<radiogroup onCreate="changeMold(self.selectedItem.label)"
+			visible="false"><!-- 此radiogroup是用來轉換換頁樣式的 -->
+			<vbox>
+				<radio label="os" checked="true" />
+			</vbox>
+		</radiogroup>
+	</vlayout>
+</zk>

@@ -1,0 +1,179 @@
+<?page title="班級管理系統" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					        void backmain() {
+					            Executions.sendRedirect("admin_main.zul");
+					    	}	
+							void changeMold(String mold){
+								grid.pagingChild.mold = mold;
+							}	
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div>
+			<div align="right">
+				<button label="回系統管理選單" onClick="backmain()" />
+			</div>
+			<tabbox id="tb">
+				<tabs id="tabs">
+					<tab id="insert" label="新增班級" />
+					<tab id="update" label="查詢/修改" />
+					<tab id="cls_grade" label="班級年級修改" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<div apply="next.services.insertclass.insertclass">
+							<hbox height="50px" width="100%" align="center">
+								<hbox hflex="true">
+									班級代號:
+									<textbox id="CD_NO" width="150px" constraint="no empty"
+										tabindex="1" />
+								</hbox>
+								<hbox hflex="true">
+									班級名稱:
+									<textbox id="CD_NAME" width="150px" tabindex="2" />
+								</hbox>
+								<hbox hflex="true">
+									所屬年級:
+									<textbox id="CD_GRADE" width="50px" maxlength="2"
+										tabindex="3" />
+								</hbox>
+							</hbox>
+							<hbox height="50px" width="100%" align="center">
+								<hbox hflex="true">
+									班級教師:
+									<textbox id="CD_TEACHER" width="150px" tabindex="4" />
+								</hbox>
+								<hbox hflex="true">
+									所屬學校:
+									<textbox id="CD_SCHOOL" width="150px" tabindex="5" />
+								</hbox>
+								<hbox hflex="true"></hbox>
+							</hbox>
+							<hbox height="50px" width="100%" align="center">
+								<hbox>
+									班級成員:
+									<textbox id="CD_MEMBER" value="" rows="4" width="600px"
+										tabindex="6" />
+								</hbox>
+							</hbox>
+							<div align="right">
+								<button id="btn_clsinsert" label="新增班級" onClick=""
+									style="background-color:#867835" />
+							</div>
+						</div>
+						<div apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vm') @init('next.services.bindclass.BindclassViewmodel')">
+							<grid id="grid" model="@bind(vm.lastModel)" mold="paging"
+								pageSize="3">
+								<columns>
+									<column hflex="1" label="班級代號" align="center" />
+									<column hflex="1" label="班級名稱" align="center" />
+									<column hflex="1" label="班級教師" align="center" />
+								</columns>
+								<template name="model">
+									<row>
+										<label value="@bind(each.CD_NO)"></label>
+										<label value="@bind(each.CD_NAME)"></label>
+										<label value="@bind(each.CD_TEACHER)"></label>
+									</row>
+								</template>
+							</grid>
+							<radiogroup onCreate="changeMold(self.selectedItem.label)"
+								visible="false">
+								<radio label="os" checked="true" />
+							</radiogroup>
+						</div>
+					</tabpanel>
+					<tabpanel>
+						<div
+							viewModel="@id('vm') @init('next.services.bindclass.BindclassViewmodel')">
+							<hbox align="center">
+								<label value="請輸入班級代號:" />
+								<textbox value="@bind(vm.class_keyin)" />
+								<button label="搜尋" image="../img/search.png" onClick="@command('search_class')" />
+								<checkbox label='查詢模式' checked='@bind(vm.readonly)' />
+								<button label="刪除班級" onClick="@command('do_delete')"
+									style="background-color:#FF8888" disabled='@bind(vm.readonly)' />
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.classModel) @template('temp1')">
+								<template name="temp1">
+									<hbox hflex="true">
+										班級代號:
+										<textbox id="upd_NO"
+											value="@bind(each.CD_NO) @save(vm.upd_NO, before='go_update')"
+											width="150px" tabindex="7" disabled="true" />
+									</hbox>
+									<hbox hflex="true">
+										班級名稱:
+										<textbox id="upd_NAME"
+											value="@bind(each.CD_NAME) @save(vm.upd_NAME, before='go_update')"
+											width="150px" tabindex="8" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										所屬年級:
+										<textbox id="upd_GRADE"
+											value="@bind(each.CD_GRADE) @save(vm.upd_GRADE, before='go_update')"
+											maxlength="2" width="150px" tabindex="9" disabled='@bind(vm.readonly)' />
+									</hbox>
+								</template>
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.classModel) @template('temp2')">
+								<template name="temp2">
+									<hbox hflex="true">
+										班級教師:
+										<textbox id="upd_TEACHER"
+											value="@bind(each.CD_TEACHER) @save(vm.upd_TEACHER, before='go_update')"
+											width="150px" tabindex="10" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										所屬學校:
+										<textbox id="upd_SCHOOL"
+											value="@bind(each.CD_SCHOOL) @save(vm.upd_SCHOOL, before='go_update')"
+											width="150px" tabindex="11" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true"></hbox>
+								</template>
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.classModel) @template('temp3')">
+								<template name="temp3">
+									<hbox>
+										班級成員:
+										<textbox id="upd_MEMBER"
+											value="@bind(each.CD_MEMBER) @save(vm.upd_MEMBER, before='go_update')"
+											rows="4" width="600px" tabindex="12" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<button label="確認修改" onClick="@command('go_update')"
+										style="background-color:#867835" disabled='@bind(vm.readonly)' />
+								</template>
+							</hbox>
+						</div>
+					</tabpanel>
+					<tabpanel>
+						<div apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vm') @init('next.services.bindclass.BindclassViewmodel')">
+							<label value="將所有的" />
+							<listbox mold="select"
+								onSelect="@command('get_beforegrade', paramx=self.selectedItem.value)">
+								<listitem label="七年級" value="7" selected="true" />
+								<listitem label="八年級" value="8" />
+							</listbox>
+							<label value="班級升級到" />
+							<listbox mold="select"
+								onSelect="@command('get_aftergrade', paramx=self.selectedItem.value)">
+								<listitem label="八年級" value="8" selected="true" />
+								<listitem label="九年級" value="9" />
+							</listbox>
+							<button label="確認" onClick="@command('cls_grade_upd')" />
+						</div>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</div>
+	</hbox>
+</zk>

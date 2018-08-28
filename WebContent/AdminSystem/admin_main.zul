@@ -1,0 +1,58 @@
+<?page title="系統管理" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!-- <?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?> -->
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;  	   
+					
+	                  void get_setuser() {	
+	                	  Executions.sendRedirect("User_manage.zul");//跳轉到帳號管理
+	              	}
+	                  void get_setuser_M() {	
+	                	  Executions.sendRedirect("User_manage_M.zul");//跳轉到大量建置帳號
+	              	}	                  
+	                  void get_setquiz(){
+	                	  Executions.sendRedirect("Quiz_manage.zul");//跳轉到題目管理
+	                  }  
+	                  void get_setclass(){
+	                	  Executions.sendRedirect("Class_manage.zul");//跳轉到班級管理
+	                  }
+				      void backmain() {
+				          Executions.sendRedirect("../Main/mainpage.zul");
+				    }
+	]]></zscript>
+	<style>
+		.grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		}
+		.grid > div {
+		border: 2px solid #7EC6FE;
+		border-radius: 5px;
+		padding: 1em;
+		color: #149CFA;
+		background: #E8F5FF;
+		}
+	</style>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div>
+			<!-- <div align="right"><button label="回主選單" onClick="backmain()"/></div> -->
+			<window sizable="true" border="normal" title="請選擇功能"
+				style="text-align:center;background-color: #51A8DD" width="800px">
+				<div sclass="grid" height="100%" align="center">
+					<button label="帳號管理系統" onClick="get_setuser()" width="150px"
+						height="150px" />
+					<button label="班級管理系統" onClick="get_setclass()" width="150px"
+						height="150px" />
+					<button label="題目管理系統" onClick="get_setquiz()" width="150px"
+						height="150px" />
+					<button label="大量建置帳號" onClick="get_setuser_M()" width="150px"
+						height="150px" />					
+				</div>
+			</window>
+		</div>
+	</hbox>
+</zk>

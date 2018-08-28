@@ -1,0 +1,37 @@
+<?page title="考卷資訊頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+				      void backmain() {
+				          Executions.sendRedirect("setexam_main.zul");
+				    }
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px">
+		<div>
+			<div align="right">
+				<button label="回命題系統選單" onClick="backmain()" />
+			</div>
+			<div apply="org.zkoss.bind.BindComposer"
+				viewModel="@id('vm') @init('next.services.setexam.SetexamViewModel_N')">
+				<grid model="@load(vm.editModel)" mold="paging" pageSize="10"
+					emptyMessage="尚未有命題考卷">
+					<columns>
+						<column hflex="1" label="考卷代號" align="center" />
+						<column hflex="1" label="考卷備註" align="center" />
+						<column hflex="1" label="" align="center" />
+					</columns>
+					<template name="model">
+						<row>
+							<label value="@load(each.EB_NO)" />
+							<label value="@load(each.EB_NAME)" />
+							<button id="@load(each.EB_NO)" label="詳細資訊"
+								onClick="@command('get_examdetail', paramx=self.id)" />
+						</row>
+					</template>
+				</grid>
+			</div>
+		</div>
+	</hbox>
+</zk>

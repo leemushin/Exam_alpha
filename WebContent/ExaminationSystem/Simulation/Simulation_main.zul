@@ -1,0 +1,128 @@
+<?page title="模擬考試頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/ExaminationSystem/layout/template-anonymous.zul"?>
+<!-- <?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?> -->
+<zk>
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;  	   
+					Session s = Sessions.getCurrent();//設定session
+					String Simulation_book;//模擬考的冊別	
+	                  void get_Simulation_1() {	
+	                	  Simulation_book = "jr1_1,第一冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第一冊模擬考試
+	              	}
+	                  void get_Simulation_2(){
+	                	  Simulation_book = "jr1_2,第二冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第二冊模擬考試
+	                  }  
+	                  void get_Simulation_3(){
+	                	  Simulation_book = "jr2_1,第三冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第三冊模擬考試
+	                  }
+	                  void get_Simulation_4(){
+	                	  Simulation_book = "jr2_2,第四冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第四冊模擬考試
+	                  }
+	                  void get_Simulation_5(){
+	                	  Simulation_book = "jr3_1,第五冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第五冊模擬考試
+	                  }
+	                  void get_Simulation_6(){
+	                	  Simulation_book = "jr3_2,第六冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam.zul");//跳轉到第六冊模擬考試
+	                  }
+	                  void get_Simulation_7(){
+	                	  Simulation_book = "range_1_2,第一～二冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第一～二冊模擬考試
+	                  }
+	                  void get_Simulation_8(){
+	                	  Simulation_book = "range_3_4,第三～四冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第三～四冊模擬考試
+	                  }
+	                  void get_Simulation_9(){
+	                	  Simulation_book = "range_1_3,第一～三冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第一～三冊模擬考試
+	                  }
+	                  void get_Simulation_10(){
+	                	  Simulation_book = "range_1_4,第一～四冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第一～四冊模擬考試
+	                  }
+	                  void get_Simulation_11(){
+	                	  Simulation_book = "range_1_5,第一～五冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第一～五冊模擬考試
+	                  }
+	                  void get_Simulation_12(){
+	                	  Simulation_book = "range_1_6,第一～六冊模擬考";
+	                	  s.setAttribute("Simulation_book", Simulation_book);//將Simulation_book設定成名為Simulation_book的session
+	                	  Executions.sendRedirect("Simulation_exam_r.zul");//跳轉到第一～六冊模擬考試
+	                  }
+				      void backmain() {
+				    	  Executions.sendRedirect("../exam_main.zul"); 
+				    }
+	]]></zscript>
+	<style>
+		.grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		}
+		.grid > div {
+		border: 2px solid #7EC6FE;
+		border-radius: 5px;
+		padding: 1em;
+		color: #149CFA;
+		background: #E8F5FF;
+		}
+	</style>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+		<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+			pack="center" spacing="20px" style="background-color: #006284">
+			<div>
+				<div align="right">
+					<button label="回選單" onClick="backmain()" />
+				</div>
+				<window sizable="true" border="normal" title="請選擇範圍"
+					style="text-align:center;background-color: #51A8DD" width="800px">
+					<div sclass="grid" height="100%" align="center">
+						<button label="第一冊" onClick="get_Simulation_1()" width="150px"
+							height="150px" />
+						<button label="第二冊" onClick="get_Simulation_2()" width="150px"
+							height="150px" />
+						<button label="第三冊" onClick="get_Simulation_3()" width="150px"
+							height="150px" visible='@bind(vm.grade_8_visible)' />
+						<button label="第四冊" onClick="get_Simulation_4()" width="150px"
+							height="150px" visible='@bind(vm.grade_8_visible)' />
+						<button label="第五冊" onClick="get_Simulation_5()" width="150px"
+							height="150px" visible='@bind(vm.grade_9_visible)' />
+						<button label="第六冊" onClick="get_Simulation_6()" width="150px"
+							height="150px" visible='@bind(vm.grade_9_visible)' />
+						<button label="第一～二冊" onClick="get_Simulation_7()" width="150px"
+							height="150px" />
+						<button label="第三～四冊" onClick="get_Simulation_8()" width="150px"
+							height="150px" visible='@bind(vm.grade_8_visible)' />
+						<button label="第一～三冊" onClick="get_Simulation_9()" width="150px"
+							height="150px" visible='@bind(vm.grade_8_visible)' />
+						<button label="第一～四冊" onClick="get_Simulation_10()" width="150px"
+							height="150px" visible='@bind(vm.grade_8_visible)' />
+						<button label="第一～五冊" onClick="get_Simulation_11()" width="150px"
+							height="150px" visible='@bind(vm.grade_9_visible)' />
+						<button label="第一～六冊" onClick="get_Simulation_12()" width="150px"
+							height="150px" visible='@bind(vm.grade_9_visible)' />
+					</div>
+				</window>
+			</div>
+		</hbox>
+	</div>
+</zk>

@@ -1,0 +1,61 @@
+<?page title="班級詳細資訊頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+		<zscript><![CDATA[
+				      void back() {
+				          Executions.sendRedirect("../class/manage_class.zul");
+				    }
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center" pack="center" spacing="20px" >
+	<div>	
+	<div align="right"><button label="回班級管理選單" onClick="back()"/></div>
+	<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('next.services.classmanage.ClassmanageViewModel')">
+		<grid model="@load(vm.clsPointModel)" >
+			<columns>
+				<column hflex="1" label="班級名稱" />
+				<column hflex="1" label="本月登入次數" />
+				<column hflex="1" label="學期登入次數" />
+				<column hflex="1" label="本月考試次數" />
+				<column hflex="1" label="學期考試次數" />
+				<column hflex="1" label="本月積分" />
+				<column hflex="1" label="學期積分" />
+			</columns>
+			<template name="model">
+				<row>
+				<label value="@load(each.CD_NAME)"/>
+				<label value="@load(each.cls_loginmonth)"/>
+				<label value="@load(each.cls_loginsemester)"/>
+				<label value="@load(each.cls_examtimesmonth)"/>
+				<label value="@load(each.cls_examtimessemester)"/>
+				<label value="@load(each.cls_Pointmonth)"/>
+				<label value="@load(each.cls_Pointsemester)"/>
+				</row>
+			</template>
+		</grid>
+		<grid model="@load(vm.detailModel)" mold="paging" pageSize="40" emptyMessage="選取班級資料錯誤" >
+			<columns>
+				<column hflex="1" label="學生帳號" align="center" />
+				<column hflex="1" label="學生姓名" align="center" />
+				<column hflex="1" label="最後登入" align="center" />
+				<column hflex="1" label="最後考試" align="center" />
+				<column hflex="1" label="本月積分" align="center" />
+				<column hflex="1" label="學期積分" align="center" />
+				<column hflex="1" label="" align="center" />
+			</columns>
+			<template name="model">
+				<row>
+					<label value="@load(each.UR_ACCOUNT)"/>
+					<label value="@load(each.UR_NAME)"/>
+					<label value="@load(each.last_login)"/>
+					<label value="@load(each.last_QUIZNAME)"/>
+					<label value="@load(each.point_month)"/>
+					<label value="@load(each.point_semester)"/>			
+					<button id="@load(each.UR_ACCOUNT)" label="詳細資訊" onClick="@command('get_memberdeatail', paramx=self.id)" />
+				</row>
+			</template>
+		</grid>
+	</div>
+	</div>
+	</hbox>	
+</zk>

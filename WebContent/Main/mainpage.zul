@@ -1,0 +1,10 @@
+<?page title="功能選擇頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?>
+<zk>
+	<div self="@define(content)">
+		<div align="center">
+			<image src="../img/formain_pic.jpg" />
+		</div>
+	</div>
+</zk>

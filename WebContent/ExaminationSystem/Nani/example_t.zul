@@ -1,0 +1,815 @@
+<?page title="試題選擇頁面_老師版" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/ExaminationSystem/layout/template-anonymous.zul"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[ 	          
+					Session s = Sessions.getCurrent();//設定session
+					String search_condition;//搜尋條件
+	                  int grade = 7;//假定的使用者權限
+	                  
+				      void backmain() 
+				      {
+				        Executions.sendRedirect("../exam_main.zul"); 
+				      }
+	                  void getnani_7_1_1(){
+	                	  search_condition = "jr1_1,ni,1,1,e,數與數線(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_2(){
+	                	  search_condition = "jr1_1,ni,1,2,e,整數的加減運算(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_3(){
+	                	  search_condition = "jr1_1,ni,1,3,e,整數的乘除運算(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_4(){
+	                	  search_condition = "jr1_1,ni,1,4,e,指數律(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }	
+	                  void getnani_7_1_5(){
+	                	  search_condition = "jr1_1,ni,1,5,e,科學記號(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }	 
+	                  void getnani_7_1_A(){
+	                	  search_condition = "jr1_1,ni,1,0,e,一冊一章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,1,h,數與數線(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,2,h,整數的加減運算(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_3h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,3,h,整數的乘除運算(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_1_4h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,4,h,指數律(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }	
+	                  void getnani_7_1_5h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,5,h,科學記號(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }	 
+	                  void getnani_7_1_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,1,0,h,一冊一章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_1(){
+	                	  search_condition = "jr1_1,ni,2,1,e,因數與倍數(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_2(){
+	                	  search_condition = "jr1_1,ni,2,2,e,最大公因數與最小公倍數(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_3(){
+	                	  search_condition = "jr1_1,ni,2,3,e,分數的加減運算(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_4(){
+	                	  search_condition = "jr1_1,ni,2,4,e,分數的乘除與四則運算(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_A(){
+	                	  search_condition = "jr1_1,ni,2,0,e,一冊二章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,2,1,h,因數與倍數(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,2,2,h,最大公因數與最小公倍數(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_3h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,2,3,h,分數的加減運算(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_4h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,2,4,h,分數的乘除與四則運算(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_2_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,2,0,h,一冊二章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_1(){
+	                	  search_condition = "jr1_1,ni,3,1,e,以符號列式與運算(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_2(){
+	                	  search_condition = "jr1_1,ni,3,2,e,一元一次方程式的列式與求解(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_3(){
+	                	  search_condition = "jr1_1,ni,3,3,e,一元一次方程式的應用(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_A(){
+	                	  search_condition = "jr1_1,ni,3,0,e,一冊三章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,3,1,h,以符號列式與運算(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,3,2,h,一元一次方程式的列式與求解(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_3h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,3,3,h,一元一次方程式的應用(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_3_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_1,ni,3,0,h,一冊三章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_1(){
+	                	  search_condition = "jr1_2,ni,1,1,e,二元一次方程式(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_2(){
+	                	  search_condition = "jr1_2,ni,1,2,e,解二元一次聯立方程式(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_3(){
+	                	  search_condition = "jr1_2,ni,1,3,e,二元一次聯立方程式的應用(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_A(){
+	                	  search_condition = "jr1_2,ni,1,0,e,二冊一章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,1,1,h,二元一次方程式(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,1,2,h,解二元一次聯立方程式(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_3h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,1,3,h,二元一次聯立方程式的應用(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_4_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,1,0,h,二冊一章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_1(){
+	                	  search_condition = "jr1_2,ni,2,1,e,直角坐標平面(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_2(){
+	                	  search_condition = "jr1_2,ni,2,2,e,二元一次方程式的圖形(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_A(){
+	                	  search_condition = "jr1_2,ni,2,0,e,二冊二章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,2,1,h,直角坐標平面(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,2,2,h,二元一次方程式的圖形(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_5_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,2,0,h,二冊二章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_1(){
+	                	  search_condition = "jr1_2,ni,3,1,e,比例式(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_2(){
+	                	  search_condition = "jr1_2,ni,3,2,e,連比(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_3(){
+	                	  search_condition = "jr1_2,ni,3,3,e,正比與反比(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_A(){
+	                	  search_condition = "jr1_2,ni,3,0,e,二冊三章(易)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_1h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,3,1,h,比例式(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_2h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,3,2,h,連比(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_3h(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,3,3,h,正比與反比(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	                  void getnani_7_6_Ah(){//加上h為困難搜尋條件
+	                	  search_condition = "jr1_2,ni,3,0,h,二冊三章(難)_老師版";//搜尋條件為冊,版本,章,節,難度;附帶試卷名稱(全章將節別設為0供後續判斷)
+	                	  s.setAttribute("search_condition", search_condition);//將search_condition設定成名為search_condition的session
+	                	  Executions.sendRedirect("exam_t.zul");
+	                  }
+	]]></zscript>
+	<div self="@define(content)">
+		<div align="right">
+			<button label="回版本選擇" onClick="backmain()" />
+		</div>
+		<div apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+			<hbox hflex="1">
+				<vbox hflex="1">
+					<tabbox id="tb" hflex="1" style="background-color: #006284">
+						<tabs>
+							<tab label="南一版-例題練習(易)" />
+							<tab label="南一版-例題練習(難)" />
+						</tabs>
+						<tabpanels>
+							<tabpanel>
+								<tabbox id="tb2" orient="vertical" style="background-color: #51A8DD">
+									<tabs width="120px">
+										<tab label="第一冊" />
+										<tab label="第二冊" />
+										<tab label="第三冊" />
+										<tab label="第四冊" />
+										<tab label="第五冊" />
+										<tab label="第六冊" />
+									</tabs>
+									<tabpanels>
+										<tabpanel>
+											<div>
+												<label value="整數的運算"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="數與數線" onClick="getnani_7_1_1()"
+													style="background-color:#227D51" disabled='@bind(vm.grade_7)' />
+												<button label="整數的加減運算" onClick="getnani_7_1_2() "
+													disabled='@bind(vm.grade_7)' />
+												<button label="整數的乘除運算" onClick="getnani_7_1_3()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="指數律" onClick="getnani_7_1_4()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="科學記號" onClick="getnani_7_1_5()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_1_A()"
+													disabled='@bind(vm.grade_7)' />
+											</div>
+											<div>
+												<label value="分數的運算"
+													style="color:blue;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="因數與倍數" onClick="getnani_7_2_1()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="最大公因數與最小公倍數" onClick="getnani_7_2_2()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="分數的加減運算" onClick="getnani_7_2_3()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="分數的乘除與四則運算" onClick="getnani_7_2_4()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_2_A()" />
+											</div>
+											<div>
+												<label value="一元一次方程式"
+													style="color:green;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="以符號列式與運算" onClick="getnani_7_3_1()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="一元一次方程式的列式與求解" onClick="getnani_7_3_2()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="一元一次方程式的應用" onClick="getnani_7_3_3()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_3_A()"
+													disabled='@bind(vm.grade_7)' />
+											</div>
+											<h:br />
+											<h:br />
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="二元一次聯立方程式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="二元一次方程式" onClick="getnani_7_4_1()" />
+												<button label="解二元一次聯立方程式" onClick="getnani_7_4_2()" />
+												<button label="二元一次聯立方程式的應用" onClick="getnani_7_4_3()" />
+												<button label="全章" onClick="getnani_7_4_A()" />
+											</div>
+											<div>
+												<label value="平面直角坐標系"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="直角坐標平面" onClick="getnani_7_5_1()" />
+												<button label="二元一次方程式的圖形" onClick="getnani_7_5_2()" />
+												<button label="全章" onClick="getnani_7_5_A()" />
+											</div>
+											<div>
+												<label value="比例"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="比例式" onClick="getnani_7_6_1()" />
+												<button label="連比" onClick="getnani_7_6_2()" />
+												<button label="正比與反比" onClick="getnani_7_6_3()" />
+												<button label="全章" onClick="getnani_7_6_A()" />
+											</div>
+											<div>
+												<label value="函數及其圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="變數與函數" onClick="" />
+												<button label="線性函數的圖行" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="一元一次不等式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="不等式" onClick="" />
+												<button label="解一元一次不等式" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="乘法公式與多項式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="乘法公式" onClick="" />
+												<button label="多項式的加法與減法" onClick="" />
+												<button label="多項式的乘法與除法" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平方根與畢氏定理"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平方根與近似值" onClick="" />
+												<button label="根式的運算" onClick="" />
+												<button label="畢氏定理" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="因式分解"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="利用提公因式法因式分解" onClick="" />
+												<button label="利用乘法公式因式分解" onClick="" />
+												<button label="利用十字交乘法因式分解" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="一元二次方程式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="因式分解法解一元二次方程式" onClick="" />
+												<button label="配方法與一元二次方程式的公式解" onClick="" />
+												<button label="一元二次方程式的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="數列與等差級數"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="數列" onClick="" />
+												<button label="等差級數" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平面幾何圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平面圖行" onClick="" />
+												<button label="垂直、平分與線對稱" onClick="" />
+												<button label="尺規作圖" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="三角形的性質"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="三角形的內角與外角" onClick="" />
+												<button label="三角形的全等性質" onClick="" />
+												<button label="全等三角形的應用" onClick="" />
+												<button label="三角形的邊角關係" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平行與四邊形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平行線" onClick="" />
+												<button label="平行四邊形" onClick="" />
+												<button label="特殊的平行四邊形與梯形" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="比例線段與相似形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="比例線段" onClick="" />
+												<button label="相似形" onClick="" />
+												<button label="相似形的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="圓的性質"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="點、直線、圓之間的關係" onClick="" />
+												<button label="圓心角、圓周角與弦切角" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="推理證明與三角形的心"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="推理與證明" onClick="" />
+												<button label="三角形的外心、內心與重心" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="二次函數"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="二次函數及其圖形" onClick="" />
+												<button label="二次函數的最大值最小值" onClick="" />
+												<button label="二次函數的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="立體幾何圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="角柱與圓柱" onClick="" />
+												<button label="角椎與圓椎" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="統計與機率"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="統計表圖與資料的分析" onClick="" />
+												<button label="百分位數、四分位數與盒狀圖" onClick="" />
+												<button label="機率" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+									</tabpanels>
+								</tabbox>
+							</tabpanel>
+							<tabpanel>
+								<tabbox id="tb3" orient="vertical" style="background-color: #434343">
+									<tabs width="120px">
+										<tab label="第一冊" />
+										<tab label="第二冊" />
+										<tab label="第三冊" />
+										<tab label="第四冊" />
+										<tab label="第五冊" />
+										<tab label="第六冊" />
+									</tabs>
+									<tabpanels>
+										<tabpanel>
+											<div>
+												<label value="整數的運算"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="數與數線" onClick="getnani_7_1_1h()"
+													style="background-color:#227D51" disabled='@bind(vm.grade_7)' />
+												<button label="整數的加減運算" onClick="getnani_7_1_2h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="整數的乘除運算" onClick="getnani_7_1_3h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="指數律" onClick="getnani_7_1_4h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="科學記號" onClick="getnani_7_1_5h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_1_Ah()"
+													disabled='@bind(vm.grade_7)' />
+											</div>
+											<div>
+												<label value="分數的運算"
+													style="color:blue;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="因數與倍數" onClick="getnani_7_2_1h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="最大公因數與最小公倍數" onClick="getnani_7_2_2h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="分數的加減運算" onClick="getnani_7_2_3h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="分數的乘除與四則運算" onClick="getnani_7_2_4h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_2_Ah()"
+													disabled='@bind(vm.grade_7)' />
+											</div>
+											<div>
+												<label value="一元一次方程式"
+													style="color:green;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="以符號列式與運算" onClick="getnani_7_3_1h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="一元一次方程式的列式與求解" onClick="getnani_7_3_2h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="一元一次方程式的應用" onClick="getnani_7_3_3h()"
+													disabled='@bind(vm.grade_7)' />
+												<button label="全章" onClick="getnani_7_3_Ah()"
+													disabled='@bind(vm.grade_7)' />
+											</div>
+											<h:br />
+											<h:br />
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="二元一次聯立方程式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="二元一次方程式" onClick="getnani_7_4_1h()" />
+												<button label="解二元一次聯立方程式" onClick="getnani_7_4_2h()" />
+												<button label="二元一次聯立方程式的應用" onClick="getnani_7_4_3h()" />
+												<button label="全章" onClick="getnani_7_4_Ah()" />
+											</div>
+											<div>
+												<label value="平面直角坐標系"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="直角坐標平面" onClick="getnani_7_5_1h()" />
+												<button label="二元一次方程式的圖形" onClick="getnani_7_5_2h()" />
+												<button label="全章" onClick="getnani_7_5_Ah()" />
+											</div>
+											<div>
+												<label value="比例"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="比例式" onClick="getnani_7_6_1h()" />
+												<button label="連比" onClick="getnani_7_6_2h()" />
+												<button label="正比與反比" onClick="getnani_7_6_3h()" />
+												<button label="全章" onClick="getnani_7_6_Ah()" />
+											</div>
+											<div>
+												<label value="函數及其圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="變數與函數" onClick="" />
+												<button label="線性函數的圖行" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="一元一次不等式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="不等式" onClick="" />
+												<button label="解一元一次不等式" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="乘法公式與多項式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="乘法公式" onClick="" />
+												<button label="多項式的加法與減法" onClick="" />
+												<button label="多項式的乘法與除法" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平方根與畢氏定理"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平方根與近似值" onClick="" />
+												<button label="根式的運算" onClick="" />
+												<button label="畢氏定理" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="因式分解"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="利用提公因式法因式分解" onClick="" />
+												<button label="利用乘法公式因式分解" onClick="" />
+												<button label="利用十字交乘法因式分解" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="一元二次方程式"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="因式分解法解一元二次方程式" onClick="" />
+												<button label="配方法與一元二次方程式的公式解" onClick="" />
+												<button label="一元二次方程式的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="數列與等差級數"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="數列" onClick="" />
+												<button label="等差級數" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平面幾何圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平面圖行" onClick="" />
+												<button label="垂直、平分與線對稱" onClick="" />
+												<button label="尺規作圖" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="三角形的性質"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="三角形的內角與外角" onClick="" />
+												<button label="三角形的全等性質" onClick="" />
+												<button label="全等三角形的應用" onClick="" />
+												<button label="三角形的邊角關係" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="平行與四邊形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="平行線" onClick="" />
+												<button label="平行四邊形" onClick="" />
+												<button label="特殊的平行四邊形與梯形" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="比例線段與相似形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="比例線段" onClick="" />
+												<button label="相似形" onClick="" />
+												<button label="相似形的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="圓的性質"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="點、直線、圓之間的關係" onClick="" />
+												<button label="圓心角、圓周角與弦切角" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="推理證明與三角形的心"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="推理與證明" onClick="" />
+												<button label="三角形的外心、內心與重心" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+										<tabpanel>
+											<div>
+												<label value="二次函數"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="二次函數及其圖形" onClick="" />
+												<button label="二次函數的最大值最小值" onClick="" />
+												<button label="二次函數的應用" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="立體幾何圖形"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="角柱與圓柱" onClick="" />
+												<button label="角椎與圓椎" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+											<div>
+												<label value="統計與機率"
+													style="color:red;font-size:15pt;background-color:#FFD382" />
+											</div>
+											<div>
+												<button label="統計表圖與資料的分析" onClick="" />
+												<button label="百分位數、四分位數與盒狀圖" onClick="" />
+												<button label="機率" onClick="" />
+												<button label="全章" onClick="" />
+											</div>
+										</tabpanel>
+									</tabpanels>
+								</tabbox>
+							</tabpanel>
+						</tabpanels>
+
+					</tabbox>
+				</vbox>
+			</hbox>
+		</div>
+	</div>
+</zk>

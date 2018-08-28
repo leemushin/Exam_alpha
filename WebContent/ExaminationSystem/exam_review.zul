@@ -1,0 +1,40 @@
+<?page title="解答頁面" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;
+					//將換頁轉換成OS模式
+					void changeMold(String mold){
+						grid.pagingChild.mold = mold;
+					}	 
+				   	void backmain() {
+				          Executions.sendRedirect("querypoint.zul");
+				    }
+	]]></zscript>
+	<div align="right">
+		<button label="回成績查詢" onClick="backmain()" />
+	</div>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.queryscores.ScoredataViewModel')"> <!-- 資料跟此ViewModel要 -->
+		<grid id="grid" model="@load(vm.recordataModel)" mold="paging"
+			pageSize="1">
+			<columns>
+				<column hflex="1" label="題目代號" align="center" />
+				<column hflex="8" label="詳解" align="center" />
+			</columns>
+			<template name="model">
+				<row>
+					<label value="@bind(each.QB_NO)" />
+					<iframe width="620px" height="550px" src="@bind(each.QB_EXPLAIN)" />
+				</row>
+			</template>
+		</grid>
+	</div>
+	<vlayout>
+		<radiogroup onCreate="changeMold(self.selectedItem.label)"
+			visible="false"><!-- 此radiogroup是用來轉換換頁樣式的 -->
+			<vbox>
+				<radio label="os" checked="true" />
+			</vbox>
+		</radiogroup>
+	</vlayout>
+</zk>

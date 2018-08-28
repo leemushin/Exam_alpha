@@ -1,0 +1,255 @@
+<?page title="帳號管理系統" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+					        void backmain() {
+					            Executions.sendRedirect("admin_main.zul");
+					    	}
+							void changeMold(String mold){
+								grid.pagingChild.mold = mold;
+							}		
+	]]></zscript>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div>
+			<div align="right">
+				<button label="回系統管理選單" onClick="backmain()" />
+			</div>
+			<tabbox id="tb">
+				<tabs id="tabs">
+					<tab id="insert" label="新增使用者" />
+					<tab id="update" label="查詢/修改" />
+					<tab id="upd_grade" label="使用者年級修改" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<div apply="next.services.insertuser.Insertuser">
+							<hbox height="50px" width="100%" align="center">
+								<hbox hflex="true">
+									使用者姓名:
+									<textbox id="SYS_USERNAME" width="150px" tabindex="1" />
+								</hbox>
+								<hbox hflex="true">
+									使用者帳號:
+									<textbox id="SYS_ACCOUNT" width="150px" constraint="no empty"
+										tabindex="2" />
+								</hbox>
+								<hbox hflex="true">
+									使用者密碼:
+									<textbox id="PASSWORD" type="password" width="150px"
+										constraint="no empty" tabindex="3" />
+								</hbox>
+								<hbox hflex="true">
+									密碼提示:
+									<textbox id="PWD_HINT" width="150px" tabindex="4" />
+								</hbox>
+							</hbox>
+							<hbox height="50px" width="100%" align="center">
+								<hbox hflex="true">
+									所屬年級:
+									<textbox id="UR_STUDENT" maxlength="2" width="50px"
+										tabindex="5" />
+								</hbox>
+								<hbox hflex="true">
+									所屬學校:
+									<textbox id="UR_SCHOOL" width="150px" tabindex="6" />
+								</hbox>
+								<hbox hflex="true">
+									註冊日期:
+									<datebox id="REGISTERED" tabindex="7" />
+								</hbox>
+								<hbox hflex="true">
+									到期日期:
+									<datebox id="EXPIRYDATE" tabindex="8" />
+								</hbox>
+							</hbox>
+							<hbox height="50px" width="100%" align="center">
+								<hbox>
+									老師註記:
+									<textbox id="UR_TEACHER" value="0" maxlength="1" width="30px"
+										tabindex="9" />
+								</hbox>
+								<hbox>
+									校長註記:
+									<textbox id="UR_PRINCIPAL" value="0" maxlength="1"
+										width="30px" tabindex="10" />
+								</hbox>
+								<hbox>
+									<label value="管理者註記:" style="color:red" />
+									<textbox id="UR_ADMIN" value="0" maxlength="1" width="30px"
+										tabindex="11" disabled="true" />
+								</hbox>
+								<hbox>
+									<label value="備註:" />
+									<textbox id="remark" tabindex="12" width="350px"/>
+								</hbox>								
+							</hbox>
+							<div align="right">
+								<button id="btn_insert" label="新增使用者" onClick=""
+									style="background-color:#867835" />
+							</div>
+						</div>
+						<div id="usrdiv" apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vm') @init('next.services.binduser.BinduserViewmodel')">
+							<grid id="grid" model="@bind(vm.users)" mold="paging"
+								pageSize="3">
+								<columns>
+									<column hflex="1" label="使用者姓名" align="center" />
+									<column hflex="1" label="使用者帳號" align="center" />
+									<column hflex="1" label="密碼提示" align="center" />
+								</columns>
+								<template name="model">
+									<row>
+										<label value="@bind(each.USERNAME)"></label>
+										<label value="@bind(each.SYS_ACCOUNT)"></label>
+										<label value="@bind(each.PASSWORD)"></label>
+									</row>
+								</template>
+							</grid>
+							<radiogroup onCreate="changeMold(self.selectedItem.label)"
+								visible="false">
+								<radio label="os" checked="true" />
+							</radiogroup>
+						</div>
+					</tabpanel>
+					<tabpanel>
+						<div apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vm') @init('next.services.binduser.BinduserViewmodel')">
+							<hbox align="center">
+								<label value="請輸入帳號:" />
+								<textbox value="@bind(vm.account_keyin)" />
+								<button label="搜尋" image="../img/search.png" onClick="@command('search_user')" />
+								<checkbox label='查詢模式' checked='@bind(vm.readonly)' />
+								<button label="刪除使用者" onClick="@command('do_delete')"
+									style="background-color:#FF8888" disabled='@bind(vm.readonly)' />
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.userModel) @template('temp1')">
+								<template name="temp1">
+									<hbox hflex="true">
+										使用者姓名:
+										<textbox id="upd_USERNAME"
+											value="@bind(each.USERNAME) @save(vm.upd_USERNAME, before='go_update')"
+											width="150px" tabindex="13" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										使用者帳號:
+										<textbox id="upd_ACCOUNT"
+											value="@bind(each.SYS_ACCOUNT) @save(vm.upd_ACCOUNT, before='go_update')"
+											width="150px" constraint="no empty" tabindex="14" disabled="true" />
+									</hbox>
+									<hbox hflex="true">
+										使用者密碼:
+										<textbox id="upd_PASSWORD"
+											value="@bind(each.PASSWORD) @save(vm.upd_PASSWORD, before='go_update')"
+											type="password" width="150px" constraint="no empty" tabindex="15"
+											disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										密碼提示:
+										<textbox id="upd_PWD_HINT"
+											value="@bind(each.PWD_HINT) @save(vm.upd_PWD_HINT, before='go_update')"
+											width="150px" tabindex="16" disabled='@bind(vm.readonly)' />
+									</hbox>
+								</template>
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.userModel) @template('temp2')">
+								<template name="temp2">
+									<hbox hflex="true">
+										所屬年級:
+										<textbox id="upd_STUDENT"
+											value="@bind(each.UR_STUDENT) @save(vm.upd_STUDENT, before='go_update')"
+											maxlength="2" width="50px" tabindex="17" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										所屬學校:
+										<textbox id="upd_SCHOOL"
+											value="@bind(each.UR_SCHOOL) @save(vm.upd_SCHOOL, before='go_update')"
+											width="150px" tabindex="18" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										註冊日期:
+										<datebox id="upd_REGISTERED"
+											value="@bind(each.REGISTERED) @save(vm.upd_REGISTERED, before='go_update')"
+											tabindex="19" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox hflex="true">
+										到期日期:
+										<datebox id="upd_EXPIRYDATE"
+											value="@bind(each.EXPIRYDATE) @save(vm.upd_EXPIRYDATE, before='go_update')"
+											tabindex="20" disabled='@bind(vm.readonly)' />
+									</hbox>
+								</template>
+							</hbox>
+							<hbox height="50px" width="100%" align="center"
+								children="@bind(vm.userModel) @template('temp3')">
+								<template name="temp3">
+									<hbox>
+										老師註記:
+										<textbox id="upd_TEACHER"
+											value="@bind(each.UR_TEACHER) @save(vm.upd_TEACHER, before='go_update')"
+											maxlength="1" width="30px" tabindex="21" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox>
+										校長註記:
+										<textbox id="upd_PRINCIPAL"
+											value="@bind(each.UR_PRINCIPAL) @save(vm.upd_PRINCIPAL, before='go_update')"
+											maxlength="1" width="30px" tabindex="22" disabled='@bind(vm.readonly)' />
+									</hbox>
+									<hbox>
+										<label value="管理者註記:" style="color:red" />
+										<textbox id="upd_ADMIN"
+											value="@bind(each.UR_ADMIN) @save(vm.upd_ADMIN, before='go_update')"
+											maxlength="1" width="30px" tabindex="23" disabled="true" />
+									</hbox>
+								<hbox>
+									<label value="備註:" />
+									<textbox id="upd_remark" 
+									value="@bind(each.REMARK) @save(vm.remark, before='go_update')"
+									tabindex="24" width="350px" disabled='@bind(vm.readonly)'/>
+								</hbox>										
+									<div align="right">
+										<button label="確認修改" onClick="@command('go_update')"
+											style="background-color:#867835" disabled='@bind(vm.readonly)' />
+									</div>
+								</template>
+							</hbox>
+							<grid model="@bind(vm.userModel)" emptyMessage="尚未搜尋">
+								<columns>
+									<column hflex="1" label="最後登入時間" align="center" />
+									<column hflex="1" label="最後登出時間" align="center" />
+								</columns>
+								<template name="model">
+									<row>
+										<label value="@bind(each.last_login)"></label>
+										<label value="@bind(each.last_logout)"></label>
+									</row>
+								</template>
+							</grid>
+						</div>
+					</tabpanel>
+					<tabpanel>
+						<div apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vm') @init('next.services.binduser.BinduserViewmodel')">
+							<label value="將所有的" />
+							<listbox mold="select"
+								onSelect="@command('get_beforegrade', paramx=self.selectedItem.value)">
+								<listitem label="七年級" value="7" selected="true" />
+								<listitem label="八年級" value="8" />
+							</listbox>
+							<label value="學生升級到" />
+							<listbox mold="select"
+								onSelect="@command('get_aftergrade', paramx=self.selectedItem.value)">
+								<listitem label="八年級" value="8" selected="true" />
+								<listitem label="九年級" value="9" />
+							</listbox>
+							<button id="btn_confirm" label="確認" onClick="@command('usr_grade_upd')" />
+						</div>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+		</div>
+	</hbox>
+</zk>

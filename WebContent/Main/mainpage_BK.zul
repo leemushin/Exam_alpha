@@ -1,0 +1,66 @@
+<?page title="功能選擇頁面" contentType="text/html;charset=UTF-8"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[	        
+	                  void getJunior() {	
+	                	  Executions.sendRedirect("../ExaminationSystem/exam_main.zul");
+	              	}
+	                  void getaccount(){
+	                	  Executions.sendRedirect("../AdminSystem/admin_main.zul");
+	                  }  
+	                  void get_teachermanage(){
+	                	  Executions.sendRedirect("../ManagementSystem/manage_main.zul");
+	                  }
+	                  void logout(){
+	              		Session sess = Sessions.getCurrent();
+	            		sess.invalidate();
+	            		Executions.sendRedirect("LoginSystem/login.zul");	
+	                  }
+	]]></zscript>
+	<style>
+		.grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		}
+		.grid > div {
+		border: 2px solid #7EC6FE;
+		border-radius: 5px;
+		padding: 1em;
+		color: #149CFA;
+		background: #E8F5FF;
+		}
+	</style>
+	<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+		pack="center" spacing="20px" style="background-color: #006284">
+		<div apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+			<window sizable="true" border="normal" title="請選擇功能"
+				style="text-align:center;background-color: #51A8DD" width="800px">
+				<div sclass="grid" height="100%" align="center">
+					<div width="100%" visible='@bind(vm.admin_visible)'>
+						<button label="系統管理功能" width="100%" onClick="getaccount()"
+							iconSclass="z-icon-cogs" />
+					</div>
+					<div width="100%">
+						<button label="國小數學系統" width="100%" onClick="" iconSclass="z-icon-cogs" />
+					</div>
+					<div width="100%">
+						<button label="銜接數學系統" width="100%" onClick="" iconSclass="z-icon-cogs" />
+					</div>
+					<div width="100%">
+						<button label="國中數學系統" width="100%" onClick="getJunior()"
+							iconSclass="z-icon-cogs" />
+					</div>
+					<div width="100%" visible='@bind(vm.teacher_visible)'>
+						<button label="教師管理系統" width="100%" onClick="get_teachermanage()"
+							iconSclass="z-icon-cogs" />
+					</div>
+				</div>
+			</window>
+		</div>
+	</hbox>
+
+</zk>

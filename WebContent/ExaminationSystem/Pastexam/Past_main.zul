@@ -1,0 +1,258 @@
+<?page title="模擬考試頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<!-- <?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?> -->
+<zk>
+	<zscript><![CDATA[
+					import org.zkoss.zk.ui.*;  	   
+					Session s = Sessions.getCurrent();//設定session
+					String Past_year;//歷屆考題的年份	
+	                  void get_Past_1() {	
+	                	  Past_year = "90_1,歷屆試題_90年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到90年一
+	              	}
+	                  void get_Past_2() {	
+	                	  Past_year = "90_2,歷屆試題_90年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到90年二
+	              	}
+	                  void get_Past_3() {	
+	                	  Past_year = "91_1,歷屆試題_91年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到91年一
+	              	}
+	                  void get_Past_4() {	
+	                	  Past_year = "91_2,歷屆試題_91年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到91年二
+	              	}
+	                  void get_Past_5() {	
+	                	  Past_year = "92_1,歷屆試題_92年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到92年一
+	              	}
+	                  void get_Past_6() {	
+	                	  Past_year = "92_2,歷屆試題_92年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到92年二
+	              	}
+	                  void get_Past_7() {	
+	                	  Past_year = "93_1,歷屆試題_93年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到93年一
+	              	}
+	                  void get_Past_8() {	
+	                	  Past_year = "93_2,歷屆試題_93年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到93年二
+	              	}
+	                  void get_Past_9() {	
+	                	  Past_year = "94_1,歷屆試題_94年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到94年一
+	              	}
+	                  void get_Past_10() {	
+	                	  Past_year = "94_2,歷屆試題_94年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到94年二
+	              	}
+	                  void get_Past_11() {	
+	                	  Past_year = "95_1,歷屆試題_95年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到95年一
+	              	}
+	                  void get_Past_12() {	
+	                	  Past_year = "95_2,歷屆試題_95年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到95年二
+	              	}
+	                  void get_Past_13() {	
+	                	  Past_year = "96_1,歷屆試題_96年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到96年一
+	              	}
+	                  void get_Past_14() {	
+	                	  Past_year = "96_2,歷屆試題_96年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到96年二
+	              	}	                 
+	                  void get_Past_15() {	
+	                	  Past_year = "97_1,歷屆試題_97年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到97年一
+	              	}
+	                  void get_Past_16() {	
+	                	  Past_year = "97_2,歷屆試題_97年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到97年二
+	              	}	                  
+	                  void get_Past_17() {	
+	                	  Past_year = "98_1,歷屆試題_98年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到98年一
+	              	}
+	                  void get_Past_18() {	
+	                	  Past_year = "98_2,歷屆試題_98年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到98年二
+	              	}	                  
+	                  void get_Past_19() {	
+	                	  Past_year = "99_1,歷屆試題_99年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到99年一
+	              	}
+	                  void get_Past_20() {	
+	                	  Past_year = "99_2,歷屆試題_99年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到99年二
+	              	}	                  
+	                  void get_Past_21() {	
+	                	  Past_year = "100_1,歷屆試題_100年一";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到100年一
+	              	}
+	                  void get_Past_22() {	
+	                	  Past_year = "100_2,歷屆試題_100年二";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到100年二
+	              	}
+	                  void get_Past_23() {	
+	                	  Past_year = "101,歷屆試題_101年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到101年
+	              	}
+	                  void get_Past_24() {	
+	                	  Past_year = "102,歷屆試題_102年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到102年
+	              	}
+	                  void get_Past_25() {	
+	                	  Past_year = "103,歷屆試題_103年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到103年
+	              	}
+	                  void get_Past_26() {	
+	                	  Past_year = "104,歷屆試題_104年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到104年
+	              	}
+	                  void get_Past_27() {	
+	                	  Past_year = "105,歷屆試題_105年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到105年
+	              	}
+	                  void get_Past_28() {	
+	                	  Past_year = "106,歷屆試題_106年";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam.zul");//跳轉到106年
+	              	}
+	                  void get_Past_R() {	
+	                	  Past_year = "會考模擬考";
+	                	  s.setAttribute("Past_year", Past_year);//將Past_year設定成名為Past_year的session
+	                	  Executions.sendRedirect("Past_exam_r.zul");//跳轉到會考模擬考
+	              	}
+				      void backmain() {
+				    	  Executions.sendRedirect("../exam_main.zul"); 
+				    }
+	]]></zscript>
+	<style>
+		.grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		}
+		.grid > div {
+		border: 2px solid #7EC6FE;
+		border-radius: 5px;
+		padding: 1em;
+		color: #149CFA;
+		background: #E8F5FF;
+		}
+	</style>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+		<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+			pack="center" spacing="20px" style="background-color: #006284">
+			<div>
+				<div align="right">
+					<button label="回選單" onClick="backmain()" />
+				</div>
+				<window sizable="true" border="normal" title="請選擇範圍"
+					style="text-align:center;background-color: #51A8DD" width="800px">
+					<div sclass="grid" height="100%" align="center">
+						<div>
+							<label value="基測考古區" />
+						</div>
+						<button label="90年一" onClick="get_Past_1()" width="100px"
+							height="100px" style="background-color:#227D51" />
+						<button label="90年二" onClick="get_Past_2()" width="100px"
+							height="100px" style="background-color:#227D51" />
+						<button label="91年一" onClick="get_Past_3()" width="100px"
+							height="100px" style="background-color:#227D51" />
+						<button label="91年二" onClick="get_Past_4()" width="100px"
+							height="100px" style="background-color:#227D51" />
+						<button label="92年一" onClick="get_Past_5()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="92年二" onClick="get_Past_6()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="93年一" onClick="get_Past_7()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="93年二" onClick="get_Past_8()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="94年一" onClick="get_Past_9()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="94年二" onClick="get_Past_10()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="95年一" onClick="get_Past_11()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="95年二" onClick="get_Past_12()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="96年一" onClick="get_Past_13()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="96年二" onClick="get_Past_14()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="97年一" onClick="get_Past_15()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="97年二" onClick="get_Past_16()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="98年一" onClick="get_Past_17()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="98年二" onClick="get_Past_18()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="99年一" onClick="get_Past_19()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="99年二" onClick="get_Past_20()" width="100px"
+							height="100px" visible='@bind(vm.grade_9_visible)' />
+						<button label="100年一" onClick="get_Past_21()" width="100px"
+							height="100px" />
+						<button label="100年二" onClick="get_Past_22()" width="100px"
+							height="100px" />
+						<button label="101年" onClick="get_Past_23()" width="100px"
+							height="100px" />
+						<button label="102年" onClick="get_Past_24()" width="100px"
+							height="100px" />
+					</div>
+					<div sclass="grid" height="100%" align="center">
+						<div>
+							<label value="會考考古區" />
+						</div>
+						<button label="103年" onClick="get_Past_25()" width="100px"
+							height="100px" />
+						<button label="104年" onClick="get_Past_26()" width="100px"
+							height="100px" />
+						<button label="105年" onClick="get_Past_27()" width="100px"
+							height="100px" />
+						<button label="106年" onClick="get_Past_28()" width="100px"
+							height="100px" />
+					</div>
+					<div sclass="grid" height="100%" align="center">
+						<button label="會考模擬考" onClick="get_Past_R()" width="100px"
+							height="100px" style="background-color:#227D51" />
+					</div>
+
+				</window>
+			</div>
+		</hbox>
+	</div>
+</zk>

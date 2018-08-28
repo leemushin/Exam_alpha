@@ -1,0 +1,47 @@
+<?page title="重點頁面" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/ExaminationSystem/layout/template_focus.zul"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[
+					//將換頁轉換成OS模式
+					void changeMold(String mold){
+						grid.pagingChild.mold = mold;
+					}	 
+					Session s = Sessions.getCurrent();//取得session
+					String focusname;//重點名稱
+				   	void backmain() {
+				          Executions.sendRedirect("Nani_focus.zul");
+				    }
+					if(s.getAttribute("focus_condition") != null ){
+						String alltmp = (String) s.getAttribute("focus_condition");
+						String[] searchtmp = alltmp.split(",");//搜尋重點暫存字串
+						focusname = searchtmp[4];
+					}
+	]]></zscript>
+	<div self="@define(content)" viewModel="@id('vm') @init('next.services.focus.FocusViewModel')"
+		style="background-color:#97C8E2;"> <!-- 資料跟此ViewModel要 -->
+		<div align="right">
+			<button label="回重點選擇頁面" onClick="backmain()" />
+		</div>
+		<grid id="grid" model="@load(vm.focusModel)" mold="paging"
+			pageSize="1">
+			<columns>
+				<column hflex="1" label="${focusname}" align="center" />
+			</columns>
+			<template name="model">
+				<row>
+					<cell style="background-color:#97C8E2;">
+						<iframe width="680px" height="500px" src="@bind(each.FB_MAIN)" />
+					</cell>
+				</row>
+			</template>
+		</grid>
+	</div>
+	<vlayout>
+		<radiogroup onCreate="changeMold(self.selectedItem.label)"
+			visible="false"><!-- 此radiogroup是用來轉換換頁樣式的 -->
+			<vbox>
+				<radio label="os" checked="true" />
+			</vbox>
+		</radiogroup>
+	</vlayout>
+</zk>

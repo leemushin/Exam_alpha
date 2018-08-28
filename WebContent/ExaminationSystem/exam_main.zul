@@ -1,0 +1,224 @@
+<?page title="國中數學系統" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!-- <?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?> -->
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/Layout/template-anonymous.zul"?>
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<zscript><![CDATA[
+					Session s = Sessions.getCurrent();//設定session
+					String Simulation_ver;//模擬考的版本
+	                  void getpoint(){
+	                	  Executions.sendRedirect("querypoint.zul");
+	                  }	      
+				      void backmain() {
+				          Executions.sendRedirect("../Main/mainpage.zul");
+				    }
+				      void getknsh_focus() {
+				          Executions.sendRedirect("Knsh/knsh_focus.zul");
+				    }  
+				      void getknsh_example() {
+				          Executions.sendRedirect("Knsh/knsh_example.zul");
+				    }
+				      void getNani_focus() {
+				          Executions.sendRedirect("Nani/Nani_focus.zul");
+				    }  
+				      void getNani_example() {
+				          Executions.sendRedirect("Nani/Nani_example.zul");
+				    } 
+				      void getNani_example_t() {
+				          Executions.sendRedirect("Nani/example_t.zul");
+				    } 
+				      void getCustom() {
+				          Executions.sendRedirect("Custom/Custom_main.zul");
+				    }  
+				      void getSimulation_nani() {
+				    	  Simulation_ver = "ni";
+				    	  s.setAttribute("Simulation_ver", Simulation_ver);//將Simulation_ver設定成名為Simulation_ver的session
+				          Executions.sendRedirect("Simulation/Simulation_main.zul");
+				    }
+				      void getSimulation_knsh() {
+				    	  Simulation_ver = "knsh";
+				    	  s.setAttribute("Simulation_ver", Simulation_ver);//將Simulation_ver設定成名為Simulation_ver的session
+				          Executions.sendRedirect("Simulation/Simulation_main.zul");
+				    }
+				      void getSimulation_naer() {
+				    	  Simulation_ver = "naer";
+				    	  s.setAttribute("Simulation_ver", Simulation_ver);//將Simulation_ver設定成名為Simulation_ver的session
+				          Executions.sendRedirect("Simulation/Simulation_main.zul");
+				    }
+				      void getSimulation_hanlin() {
+				    	  Simulation_ver = "hanlin";
+				    	  s.setAttribute("Simulation_ver", Simulation_ver);//將Simulation_ver設定成名為Simulation_ver的session
+				          Executions.sendRedirect("Simulation/Simulation_main.zul");
+				    } 
+				      void getPastexam() {
+				          Executions.sendRedirect("Pastexam/Past_main.zul");
+				    } 
+	]]></zscript>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('next.services.permissions.PermissionsViewModel')">
+		<hbox self="@define(content)" vflex="1" hflex="1" align="center"
+			pack="center" spacing="20px" style="background-color: #006284">
+			<vbox hflex="1">
+
+				<tabbox id="tb" hflex="1" mold="accordion" style="background-color: #006284">
+					<tabs>
+						<tab label="請選擇版本" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<tabbox id="tb2" orient="vertical">
+								<tabs width="130px" style="background-color: #123962">
+									<tab label="南一版" iconSclass="z-icon-book"
+										style="background-color: #1cc7d0;text-align:left;" />
+									<tab label="康軒版" iconSclass="z-icon-book"
+										style="background-color: #2dde98;text-align:left;" />
+									<tab label="翰林版" iconSclass="z-icon-book"
+										style="background-color: #ffc168;text-align:left;" />
+									<tab label="部編版" iconSclass="z-icon-book"
+										style="background-color: #ff6c5f;text-align:left;" />
+									<tab label="歷屆試題" iconSclass="z-icon-book"
+										style="background-color: #ff4f81;text-align:left;" />
+									<tab label="積分查詢" iconSclass="z-icon-book"
+										style="background-color: #b84592;text-align:left;" />
+									<tab label="客製考卷" iconSclass="z-icon-book"
+										style="background-color: #a94592;text-align:left;" />
+									<!-- <tab label="回主選單" iconSclass="z-icon-arrow-left" style="background-color: 
+										#6e3894;text-align:left;" onClick="backmain()" /> -->
+								</tabs>
+								<tabpanels>
+									<tabpanel style="background-color: #1cc7d0">
+										<div>
+											<label value="南一版" style="color:red;font-size:20pt" />
+										</div>
+										<button label="講義重點" onClick="getNani_focus()" width="150px"
+											height="150px" style="background-color:#F7C242" />
+										<button label="例題練習" onClick="getNani_example()" width="150px"
+											height="150px " style="background-color:#867835" />
+										<button label="模擬考" onClick="getSimulation_nani()"
+											width="150px" height="150px" style="background-color:#227D51" />
+										<button label="例題練習_老師版" onClick="getNani_example_t()"
+											width="150px" height="150px" visible='@bind(vm.teacher_visible)' />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-image: url(../img/just_test.jpg);">
+										<div>
+											<label value="康軒版" style="color:red;font-size:20pt" />
+										</div>
+										<button label="講義重點" onClick="getknsh_focus()" width="150px"
+											height="150px" />
+										<button label="例題練習" onClick="getknsh_example()" width="150px"
+											height="150px" />
+										<button label="模擬考" onClick="getSimulation_knsh()"
+											width="150px" height="150px" />
+										<button label="例題練習_老師版" onClick="" width="150px"
+											height="150px" visible='@bind(vm.teacher_visible)' />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-color: #ffc168">
+										<div>
+											<label value="翰林版" style="color:red;font-size:20pt" />
+										</div>
+										<button label="講義重點" onClick="" width="150px" height="150px" />
+										<button label="例題練習" onClick="" width="150px" height="150px" />
+										<button label="模擬考" onClick="getSimulation_hanlin()"
+											width="150px" height="150px" />
+										<button label="例題練習_老師版" onClick="" width="150px"
+											height="150px" visible='@bind(vm.teacher_visible)' />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-color: #ff6c5f">
+										<div>
+											<label value="部編版" style="color:red;font-size:20pt" />
+										</div>
+										<button label="講義重點" onClick="" width="150px" height="150px" />
+										<button label="例題練習" onClick="" width="150px" height="150px" />
+										<button label="模擬考" onClick="getSimulation_naer()"
+											width="150px" height="150px" />
+										<button label="例題練習_老師版" onClick="" width="150px"
+											height="150px" visible='@bind(vm.teacher_visible)' />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-color: #ff4f81">
+										<button label="歷屆試題" width="150px" height="150px"
+											onClick="getPastexam()" />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-color: #b84592">
+										<button label="積分查詢" width="150px" height="150px"
+											onClick="getpoint()" />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<tabpanel style="background-color: #a94592">
+										<div apply="org.zkoss.bind.BindComposer"
+											viewModel="@id('vm') @init('next.services.customexam.CustomexamViewModel')">
+											<div>
+												<label value="請輸入試卷名稱" />
+												<textbox value="@bind(vm.exam_keyin)" />
+												<button label="進行考試" onClick="@command('search_Customexam')" />
+											</div>
+										</div>
+										<!-- <button label="客製考卷" width="150px" height="150px" onClick="getCustom()" 
+											/> -->
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+										<h:br />
+									</tabpanel>
+									<!-- <tabpanel style="background-color: #6e3894"></tabpanel> -->
+								</tabpanels>
+							</tabbox>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+
+			</vbox>
+
+		</hbox>
+	</div>
+</zk>

@@ -1,0 +1,130 @@
+<?page title="隨機考卷頁面" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/LoginSystem/layout/template-anonymous.zul"?>
+<zk>
+	<zscript><![CDATA[
+	        	      void backmain() {
+	        	          Executions.sendRedirect("setexam_main.zul");
+	        	    }
+    ]]></zscript>
+	<div align="right">
+		<button label="回命題系統選單" onClick="backmain()" />
+	</div>
+	<div viewModel="@id('vm') @init('next.services.setexam.SetexamViewModel_N')">
+		<div>
+			<label value="請選擇版本" />
+			<listbox mold="select"
+				onSelect="@command('get_selectVER', paramx=self.selectedItem.value)">
+				<listitem label="南一版" value="ni" selected="true" />
+				<listitem label="康軒版" value="knsh" />
+				<listitem label="瀚林版" value="hanlin" />
+				<listitem label="部編版" value="naer" />
+			</listbox>
+			<label value="請選擇難易度" />
+			<listbox mold="select"
+				onSelect="@command('get_selectLEVEL', paramx=self.selectedItem.value)">
+				<listitem label="易" value="e" selected="true" />
+				<listitem label="難" value="h" />
+			</listbox>
+			<label value="請選擇冊別" />
+			<listbox mold="select"
+				onSelect="@command('get_selectBOOK', paramx=self.selectedItem.value)">
+				<listitem label="第一冊" value="jr1_1" selected="true" />
+				<listitem label="第二冊" value="jr1_2" />
+				<listitem label="第三冊" value="jr2_1" />
+				<listitem label="第四冊" value="jr2_2" />
+				<listitem label="第五冊" value="jr3_1" />
+				<listitem label="第六冊" value="jr3_2" />
+			</listbox>
+			<label value="請選擇章別" />
+			<listbox mold="select"
+				onSelect="@command('get_selectCHAPTER', paramx=self.selectedItem.value)">
+				<listitem label="第一章" value="1" selected="true" />
+				<listitem label="第二章" value="2" />
+				<listitem label="第三章" value="3" />
+				<listitem label="第四章" value="4" />
+				<listitem label="第五章" value="5" />
+			</listbox>
+			<label value="請選擇節別" />
+			<listbox mold="select"
+				onSelect="@command('get_selectSECTION', paramx=self.selectedItem.value)">
+				<listitem label="第一節" value="1" selected="true" />
+				<listitem label="第二節" value="2" />
+				<listitem label="第三節" value="3" />
+				<listitem label="第四節" value="4" />
+				<listitem label="第五節" value="5" />
+			</listbox>
+			<label value="請選擇出題數" />
+			<listbox mold="select"
+				onSelect="@command('get_selectrandom_num', paramx=self.selectedItem.value)">
+				<listitem label="一題" value="1" selected="true" />
+				<listitem label="五題" value="5" />
+				<listitem label="十題" value="10" />
+			</listbox>
+			<button label="隨機出題" onClick="@command('search_quiz_random')" />
+		</div>
+		<div>
+			<label value="考卷代號:" />
+			<textbox value="@bind(vm.examcode)" />
+			<label value="考卷備註:" />
+			<textbox value="@save(vm.exammark)" />
+			<button label="保存考卷" onClick="@command('save_todb')" />
+		</div>
+		<radiogroup onCheck="@command('set_type', paramx=self.selectedItem.value)">
+			<label value="考完試後 " />
+			<radio label="可以" value="1" selected="true" />
+			<radio label="不可以" value="0" />
+			<label value=" 觀看詳細解答" />
+		</radiogroup>
+		<div align="right">
+			<label value="總共已選擇 " />
+			<label value="@bind(vm.right_lenth)" />
+			<label value="題" />
+		</div>
+		<hlayout>
+			<vlayout>
+				<listbox model="@bind(vm.leftModel)" selectedItems="@bind(vm.selection1)"
+					multiple="true" width="700px" height="600px">
+					<listhead>
+						<listheader hflex="3" label="題目列表" align="center" />
+						<listheader hflex="8" label="預覽" align="center" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@bind(each.QB_CODE)" />
+							<listcell>
+								<iframe src="@bind(each.QB_PIC)" width="600px" height="150px" />
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</vlayout>
+			<vbox vflex="1" pack="middle">
+				<button label="&gt;" onClick="@command('moveToList2')" />
+				<button label="&lt;" onClick="@command('moveToList1')" />
+			</vbox>
+			<vlayout>
+				<listbox id="list" model="@bind(vm.rightModel)"
+					selectedItems="@bind(vm.selection2)" multiple="true" width="700px"
+					height="600px">
+					<listhead>
+						<listheader hflex="3" label="已選題目" align="center" />
+						<listheader hflex="8" label="預覽" align="center" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@bind(each.QB_CODE)" />
+							<listcell>
+								<iframe src="@bind(each.QB_PIC)" width="600px" height="150px" />
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</vlayout>
+			<vbox vflex="1" width="24px">
+				<button label="上" onClick="@command('right_up')" />
+				<button label="下" onClick="@command('right_down')" />
+			</vbox>
+		</hlayout>
+	</div>
+</zk>
